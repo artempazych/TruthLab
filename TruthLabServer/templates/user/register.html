@@ -1,0 +1,30 @@
+<main>
+<h2>Sign up</h2>
+  {% if error is defined %}
+            <div class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+        {% endif %}
+<form action="/user/register" class="sign-in" method="post">
+  <div class="input-field col s12">
+    <label for="exampleInputEmail1">E-mail (логін)</label>
+    <input type="email" required name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="input-field col s12">
+    <label for="exampleInputPassword1">Пароль</label>
+    <input type="password" name="password1" required class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="input-field col s12">
+    <label for="exampleInputPassword2">Пароль (ще раз)</label>
+    <input type="password" name="password2" required class="form-control" id="exampleInputPassword2">
+  </div>
+  <div class="input-field col s12">
+    <label for="inputName">Прізвище та ім'я</label>
+    <input type="text" name="username" required class="form-control" id="inputName" aria-describedby="inputName">
+  </div>
+  <button type="submit" class="btn btn-primary">Зареєструватися</button>
+  <a class="btn btn-primary" href="/user/login" style="margin-left:20px;">Увійти</a>
+</form>
+</main>
+  <script src="/static/js/materialize.min.js"></script>
+<link rel="stylesheet" href="/static/css/materialize.min.css"/>

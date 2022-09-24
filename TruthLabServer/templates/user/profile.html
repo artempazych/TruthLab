@@ -1,0 +1,20 @@
+<h2>Редагування профіля</h2>
+<form action="/user/profile" method="post" id="profile-edit">
+  <div class="form-group">
+    <label for="profile-login">E-mail (логін)</label>
+    <input type="email" readonly name="login" value="{{ profile.login }}" class="form-control" id="profile-login" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="profile-password-1">Пароль</label>
+    <input type="password" name="password1" class="form-control" id="profile-password-1">
+  </div>
+  <div class="form-group">
+    <label for="profile-password-2">Пароль (ще раз)</label>
+    <input type="password" name="password2" class="form-control" id="profile-password-2">
+  </div>
+  <div class="form-group">
+    <label for="profile-username">Прізвище та ім'я</label>
+    <input type="text" name="username" required value="{{ profile.username }}" class="form-control" id="profile-username" aria-describedby="inputName">
+  </div>
+  <button type="submit" class="btn btn-primary">Зберегти</button>
+</form>

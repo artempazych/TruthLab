@@ -1,0 +1,25 @@
+<h1>Список зареєстрованих користувачів</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Логін</th>
+      <th scope="col">Ім'я</th>
+      <th scope="col">Доступ</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in users %}
+    <tr>
+      <th scope="row">{{ item.id }}</th>
+      <td>{{ item.login }}</td>
+      <td>{{ item.username }}</td>
+      <td>{{ item.access }}</td>
+      <td>
+          <a class="user-edit" href="/user/edit/{{ item.id }}"><i class="fas fa-edit"></i></a>
+          <a class="user-delete" href="/user/delete/{{ item.id }}"><i class="fas fa-trash-alt"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

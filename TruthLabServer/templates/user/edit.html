@@ -1,0 +1,22 @@
+<h2>Редагування профіля</h2>
+<form action="/user/edit/{{ user.id }}" id="user-edit" method="post">
+ <div class="form-group">
+    <label for="user-edit-login">E-mail (логін)</label>
+    <input type="email" readonly name="login" value="{{ user.login }}" class="form-control" id="user-edit-login" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="user-edit-password">Пароль</label>
+    <input type="password" name="password" value="{{ user.password }}" class="form-control" id="user-edit-password">
+  </div>
+  <div class="form-group">
+    <label for="user-edit-username">Прізвище та ім'я</label>
+    <input type="text" name="username" required value="{{ user.username }}" class="form-control" id="user-edit-username" aria-describedby="inputName">
+  </div>
+  <div class="form-group">
+    <label for="user-edit-access">Доступ</label>
+    <input type="text" name="username" required value="{{ user.access }}" class="form-control" id="user-edit-access" aria-describedby="inputName">
+  </div>
+
+  <button type="submit" class="btn user-edit-save btn-primary">Зберегти</button>
+  <button type="button" class="btn user-edit-cancel" class="btn">Відмінити</button>
+</form>

@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Мова</th>
+      <th scope="col">Еталонний набір слів</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in languages %}
+    <tr>
+      <th scope="row">{{ item.id }}</th>
+      <td>{{ item.name }}</td>
+      <td>{{ ' '.join(item.text.split()[:30]) }} ...</td>
+      <td>
+          <a class="language-edit" href="/language/edit/{{ item.id }}"><i class="fas fa-edit"></i></a>
+          <a class="language-delete" href="/language/delete/{{ item.id }}"><i class="fas fa-trash-alt"></i></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

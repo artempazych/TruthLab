@@ -1,0 +1,371 @@
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+ <h1>TruthLab</h1>
+   <div class="container">
+       <div class="row">
+          <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-info-tab" data-toggle="pill" href="#v-pills-info" role="tab" aria-controls="v-pills-info" aria-selected="true">Загальна інформація</a>
+              <a class="nav-link" id="v-pills-theme-tab" data-toggle="pill" href="#v-pills-theme" role="tab" aria-controls="v-pills-theme" aria-selected="false">Визначення теми</a>
+              <a class="nav-link" id="v-pills-spam-tab" data-toggle="pill" href="#v-pills-spam" role="tab" aria-controls="v-pills-spam" aria-selected="false">Наявність спаму</a>
+                <a class="nav-link" id="v-pills-language-tab" data-toggle="pill" href="#v-pills-language" role="tab" aria-controls="v-pills-language" aria-selected="false">Визначення мови</a>
+              <!--  <a class="nav-link" id="v-pills-similar-tab" data-toggle="pill" href="#v-pills-similar" role="tab" aria-controls="v-pills-similar" aria-selected="false">Пошук схожих текстів</a> -->
+                <a class="nav-link" id="v-pills-fake-tab" data-toggle="pill" href="#v-pills-fake" role="tab" aria-controls="v-pills-fake" aria-selected="false">Визначення фейковості тексту</a>
+                <a class="nav-link" id="v-pills-analize-tab" data-toggle="pill" href="#v-pills-analize" role="tab" aria-controls="v-pills-analize" aria-selected="false">Комплексний аналіз тексту</a>
+                <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Профіль користувача</a>
+                {% if session['access'] == 'admin' %}
+                <a class="nav-link" id="v-pills-users-tab" data-toggle="pill" href="#v-pills-users" role="tab" aria-controls="v-pills-users" aria-selected="false">Список користувачів</a>
+                <a class="nav-link" id="v-pills-admin-tab" data-toggle="pill" href="#v-pills-admin" role="tab" aria-controls="v-pills-admin" aria-selected="false">Адміністрування</a>
+                {% endif %}
+                <a class="nav-link" id="v-pills-exit-tab" href="/user/logout">Вихід</a>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="v-pills-info" role="tabpanel" aria-labelledby="v-pills-info-tab">
+                      {% include 'info.html' %}
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-theme" role="tabpanel" aria-labelledby="v-pills-theme-tab">
+                    <div class="accordion" id="accordionExample">
+                          <div class="card">
+                            <div class="card-header" id="headingOne">
+                              <h2 class="mb-0">
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h3>Визначення теми для тексту</h3>
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                              <div class="card-body">
+                                 {% include 'themes/predict.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" id="headingTwo">
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                  <h3>Додавання теми для навчання</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                              <div class="card-body">
+                                 {% include 'themes/add.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" id="headingThree">
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                   <h3>Перегляд бази еталонних текстів</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                              <div class="card-body" id="themes-list">
+                                {% include 'themes/list.html' %}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-spam" role="tabpanel" aria-labelledby="v-pills-spam-tab">
+                    <div class="accordion" id="accordion-spam">
+                          <div class="card">
+                            <div class="card-header" id="headingSpam1">
+                              <h2 class="mb-0">
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-spam-1" aria-expanded="true" aria-controls="collapse-spam-1">
+                                    <h3>Визначення наявності спаму у тексті</h3>
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="collapse-spam-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-spam">
+                              <div class="card-body">
+                                 {% include 'spam/predict.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" id="headingSpam2">
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-spam-2" aria-expanded="false" aria-controls="collapse-spam-2">
+                                  <h3>Додавання спам-тексту</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-spam-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-spam">
+                              <div class="card-body">
+                                  {% include 'spam/add.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" >
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-spam-3" aria-expanded="false" aria-controls="collapse-spam-3">
+                                   <h3>Перегляд бази еталонних текстів</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-spam-3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-spam">
+                              <div class="card-body" id="spam-list">
+                                 {% include 'spam/list.html' %}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-language" role="tabpanel" aria-labelledby="v-pills-language-tab">
+                    <div class="accordion" id="accordion-language">
+                          <div class="card">
+                            <div class="card-header" id="headingLanguage1">
+                              <h2 class="mb-0">
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-language-1" aria-expanded="true" aria-controls="collapse-language-1">
+                                    <h3>Визначення мови написання тексту</h3>
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="collapse-language-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-language">
+                              <div class="card-body">
+                                  {% include 'languages/predict.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" id="headingLanguage2">
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-language-2" aria-expanded="false" aria-controls="collapse-language-2">
+                                  <h3>Додавання еталонного тексту</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-language-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-language">
+                              <div class="card-body">
+                                  {% include 'languages/add.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" >
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-language-3" aria-expanded="false" aria-controls="collapse-language-3">
+                                   <h3>Перегляд бази еталонних текстів</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-language-3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-language">
+                              <div class="card-body" id="languages-list">
+                                 {% include 'languages/list.html' %}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-similar" role="tabpanel" aria-labelledby="v-pills-similar-tab">
+                    <div class="accordion" id="accordion-similar">
+                          <div class="card">
+                            <div class="card-header" id="headingSimilar1">
+                              <h2 class="mb-0">
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-similar-1" aria-expanded="true" aria-controls="collapse-similar-1">
+                                    <h3>Пошук схожих текстів</h3>
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="collapse-similar-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-similar">
+                              <div class="card-body">
+                                  <form action="/language-predict" name="spam-predict" method="post" id="similar-predict">
+                                      <div class="form-group">
+                                        <label for="spam2-text">Введіть текст, для якого потрібно знайти схожі:</label>
+                                          <textarea rows="10" class="form-control" name="text" id="similar-text"></textarea>
+                                      </div>
+                                      <button type="submit" class="btn btn-primary">Знайти</button>
+                                    </form>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" id="headingSimilar2">
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-similar-2" aria-expanded="false" aria-controls="collapse-similar-2">
+                                  <h3>Результати пошуку схожих текстів</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-similar-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-similar">
+                              <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Текст</th>
+                                            <th>Посилання</th>
+                                            <th>Дата</th>
+                                            <th>Відсоток<br/>схожості</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Сьогодні, 21 грудня, виконавчий комітет міської ради прийняв рішення «Про демонтаж спеціальних конструкцій зовнішньої реклами гральних закладів у м. Житомирі». Відповідно до листа Житомирського відділу поліції ГУНП у Житомирській області на ім’я міського голови Сергій Сухомлина щодо сприяння заборонних приписів та демонтажу рекламних носіїв з інформацією ...</td>
+                                            <td><a href="http://zt-rada.gov.ua/?3398[0]=9889">Перейти</a></td>
+                                            <td>21.12.2019</td>
+                                            <td>100%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>21 грудня, виконавчий комітет міської ради прийняв рішення «Про демонтаж спеціальних конструкцій зовнішньої реклами гральних закладів у м. Житомирі». Відповідно до листа Житомирського відділу поліції ГУНП у Житомирській області на ім’я міського голови Сергій Сухомлина щодо сприяння заборонних приписів та демонтажу рекламних носіїв з інформацією у сфері ...</td>
+                                            <td><a href="http://zt-news.org.ua/index.php?newsid=16118">Перейти</a></td>
+                                            <td>21.12.2019</td>
+                                            <td>97%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Рішення демонтувати рекламу гральних закладів за 33 адресами прийняв виконком 21 грудня. Відповідно до листа Житомирського відділу поліції ГУНП у Житомирській області затверджено перелік адрес, за якими розміщено засоби зовнішньої реклами, що підлягають демонтажу ...</td>
+                                            <td><a href="https://www.1.zt.ua/news/vlada/u-zhitomiri-demontuyut-reklamu-gralnih-zakladiv-za-33-adresami.html">Перейти</a></td>
+                                            <td>21.12.2019</td>
+                                            <td>90%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-fake" role="tabpanel" aria-labelledby="v-pills-fake-tab">
+                    <div class="accordion" id="accordion-fake">
+                          <div class="card">
+                            <div class="card-header" id="headingFake1">
+                              <h2 class="mb-0">
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-fake-1" aria-expanded="true" aria-controls="collapse-fake-1">
+                                    <h3>Визначення фейковості тексту</h3>
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="collapse-fake-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-fake">
+                              <div class="card-body">
+                                  {% include 'fake/predict.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" id="headingfake2">
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-fake-2" aria-expanded="false" aria-controls="collapse-fake-2">
+                                  <h3>Додавання фейкового тексту</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-fake-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-fake">
+                              <div class="card-body">
+                                  {% include 'fake/add.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" >
+                              <h2 class="mb-0">
+                                <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-fake-3" aria-expanded="false" aria-controls="collapse-fake-3">
+                                   <h3>Перегляд бази еталонних текстів</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-fake-3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-fake">
+                              <div class="card-body" id="fake-list">
+                                 {% include 'fake/list.html' %}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-analize" role="tabpanel" aria-labelledby="v-pills-analize-tab">
+                    <div class="accordion" id="accordion-analize">
+                          <div class="card">
+                            <div class="card-header" id="headingAnalize1">
+                              <h2 class="mb-0">
+                                <button class="btn" type="button" data-toggle="collapse" data-target="#collapse-analize-1" aria-expanded="true" aria-controls="collapse-analize-1">
+                                    <h3>Комплексний аналіз текстів</h3>
+                                </button>
+                              </h2>
+                            </div>
+
+                            <div id="collapse-analize-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-analize">
+                              <div class="card-body">
+                                    {% include 'complex/predict.html' %}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="card-header" id="headingAnalize2">
+                              <h2 class="mb-0">
+                                <button id="complex-analisis-button" class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse-analize-2" aria-expanded="false" aria-controls="collapse-analize-2">
+                                  <h3>Результати комплексного аналізу</h3>
+                                </button>
+                              </h2>
+                            </div>
+                            <div id="collapse-analize-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-analize">
+                              <div class="card-body" id="complex-list">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                      <div id="user-profile">
+                        {% include 'user/profile.html' %}
+                      </div>
+                  </div>
+                <div class="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
+                      <div id="users-list">
+
+                      </div>
+                  </div>
+              <div class="tab-pane fade" id="v-pills-admin" role="tabpanel" aria-labelledby="v-pills-admin-tab">
+                {% include 'admin/fit.html' %}
+              </div>
+              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                  <form action="/news-scraping" method="post" id="news-scraping" name="news-scraping">
+                        <h1>Збір даних</h1>
+                          <div class="form-group">
+                            <label for="url">URL-адреса:</label>
+                            <input type="text" class="form-control" id="url" name="url">
+                          </div>
+                          <div class="form-group">
+                            <label for="site">Сайт:</label>
+                            <select name="site" id="site" class="form-control" >
+                                <option value="tsn.ua">tsn.ua</option>
+                            </select>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Запустити</button>
+                          <span id="news-scraping-status"></span>
+                        </form>
+
+              </div>
+            </div>
+          </div>
+          </div>
+       </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

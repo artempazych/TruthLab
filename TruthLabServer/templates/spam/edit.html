@@ -1,0 +1,8 @@
+ <form action="/spam/edit/{{ spam.id }}" id="spam-edit" method="post">
+  <div class="form-group">
+    <label for="spam-edit-text">Текст, який являє собою спам:</label>
+      <textarea rows="10" class="form-control" name="text" id="spam-edit-text">{{ spam.text }}</textarea>
+  </div>
+  <button type="submit" class="btn spam-edit-save btn-primary">Зберегти</button>
+  <button type="button" class="btn spam-edit-cancel" class="btn">Відмінити</button>
+</form>

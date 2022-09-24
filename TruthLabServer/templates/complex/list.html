@@ -1,0 +1,25 @@
+ <table class="table" style="font-size:10px;">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Текст</th>
+            <!--<th>Посилання</th>-->
+            <th>Тематика</th>
+            <th>Мова</th>
+            <th><!-- Відсоток <br/>спаму -->Чи спам</th>
+            <th><!-- Відсоток <br/>фейковості -->Чи фейк</th>
+            <!-- <th>Відсоток<br/>схожості</th>-->
+            <!--<th>Дата</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>1</td>
+          <td>{{ result.text }}</td>
+          <td>{{ result.theme}}</td>
+          <td>{{ result.language }}</td>
+          <td>{{ result.spam }}</td>
+          <td>{{ result.fake }}</td>
+        </tr>
+    </tbody>
+</table>

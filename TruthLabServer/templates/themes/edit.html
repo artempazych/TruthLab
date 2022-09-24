@@ -1,0 +1,12 @@
+<form action="/theme/edit/{{ theme.id }}" id="theme-edit" method="post">
+  <div class="form-group">
+    <label for="theme-edit-name">Назва теми:</label>
+    <input type="text" class="form-control" id="theme-edit-name" name="name" value="{{ theme.name }}">
+  </div>
+  <div class="form-group">
+    <label for="theme-edit-text">Текст за вказаною темою:</label>
+      <textarea rows="10" class="form-control" name="text" id="theme-edit-text">{{ theme.text }}</textarea>
+  </div>
+  <button type="submit" class="btn theme-edit-save btn-primary">Зберегти</button>
+  <button type="button" class="btn theme-edit-cancel" class="btn">Відмінити</button>
+</form>

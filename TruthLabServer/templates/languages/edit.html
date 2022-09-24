@@ -1,0 +1,12 @@
+<form action="/language/edit/{{ language.id }}" id="language-edit" method="post">
+  <div class="form-group">
+    <label for="language-edit-name">Мова тексту:</label>
+    <input type="text" class="form-control" id="language-edit-name" name="name" value="{{ language.name }}">
+  </div>
+  <div class="form-group">
+    <label for="language-edit-text">Текст, написаний вказаною мовою:</label>
+      <textarea rows="10" class="form-control" name="text" id="language-edit-text">{{ language.text }}</textarea>
+  </div>
+  <button type="submit" class="btn language-edit-save btn-primary">Зберегти</button>
+  <button type="button" class="btn language-edit-cancel" class="btn">Відмінити</button>
+</form>

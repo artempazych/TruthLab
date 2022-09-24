@@ -1,0 +1,8 @@
+ <form action="/fake/edit/{{ fake.id }}" id="spam-edit" method="post">
+  <div class="form-group">
+    <label for="fake-edit-text">Текст, який являє собою фейк:</label>
+      <textarea rows="10" class="form-control" name="text" id="fake-edit-text">{{ fake.text }}</textarea>
+  </div>
+  <button type="submit" class="btn fake-edit-save btn-primary">Зберегти</button>
+  <button type="button" class="btn fake-edit-cancel" class="btn">Відмінити</button>
+</form>
